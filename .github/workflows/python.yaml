@@ -3,7 +3,7 @@ name: Python CI
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - ./*.py
       - ./*.lock
@@ -12,7 +12,7 @@ on:
       - .github/workflows/python.yaml
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - ./*.py
       - ./*.lock
