@@ -1,0 +1,4 @@
+[{"opcode": 14, "r1": 0, "r2": 15, "data": 1, "label": null},
+ {"opcode": 15, "r1": 0, "r2": 15, "data": 0, "label": null},
+ {"opcode": 5, "r1": null, "r2": 15, "data": 0, "label": "while"},
+ {"opcode": 1, "r1": null, "r2": null, "data": 0, "label": null}]
