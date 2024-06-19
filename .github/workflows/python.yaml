@@ -5,20 +5,21 @@ on:
     branches:
       - main
     paths:
-      - ./*.py
-      - ./*.lock
-      - ./pyproject.toml
-      - ./tests/*
-      - .github/workflows/python.yaml
+      - "./*.py"
+      - "./*.lock"
+      - "./pyproject.toml"
+      - "./tests/**"
+      - ".github/workflows/python.yaml"
   pull_request:
     branches:
       - main
     paths:
-      - ./*.py
-      - ./*.lock
-      - ./pyproject.toml
-      - ./tests/*
-      - .github/workflows/python.yaml
+      - "./*.py"
+      - "./*.lock"
+      - "./pyproject.toml"
+      - "./tests/**"
+      - ".github/workflows/python.yaml"
+
 defaults:
   run:
     working-directory: ./
