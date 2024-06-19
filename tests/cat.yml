@@ -86,9 +86,19 @@ out_log: |
 
   [DEB] input: 'l'
 
+  [DEB] CR: IN     R0     1            
+  TICK:     30    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-  ...
+  [DEB] output: 'hel' << 'l'
 
+  [DEB] CR: OUT    R0     0            
+  TICK:     33    IP:        2    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      0      (while)
   TICK:     36    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
   R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
