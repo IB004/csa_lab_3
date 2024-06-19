@@ -29,11 +29,11 @@ def test_translator_asm_and_machine(golden, caplog):
 
         with open(target, encoding="utf-8") as file:
             code = file.read()
-        logs = caplog.text.split("\n\n")
+        logs = caplog.text.split("\n")
         if len(logs) <= 128:
             log = caplog.text
         else:
-            log = "".join(
+            log = "\n".join(
                 [
                     *logs[0:64],
                     "\n\n...\n",

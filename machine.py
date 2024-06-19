@@ -305,7 +305,7 @@ class ControlUnit:
             self.data_path.r[Registers.R5.value],
         )
 
-        state_repr += "R6: {:8}    R7: {:8}    R8: {:8}    R9: {:8}    R10: {:7}\n\n".format(
+        state_repr += "R6: {:8}    R7: {:8}    R8: {:8}    R9: {:8}    R10: {:7}\n".format(
             self.data_path.r[Registers.R6.value],
             self.data_path.r[Registers.R7.value],
             self.data_path.r[Registers.R8.value],

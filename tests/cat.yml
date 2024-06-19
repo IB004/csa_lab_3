@@ -27,14 +27,12 @@ out_log: |
   R0:        0    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] input: 'h'
 
   [DEB] CR: IN     R0     1            
   TICK:      3    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
   R0:      104    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
-
 
   [DEB] output: '' << 'h'
 
@@ -43,12 +41,10 @@ out_log: |
   R0:      104    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] CR: JMP    -      0      (while)
   TICK:      9    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
   R0:      104    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
-
 
   [DEB] input: 'e'
 
@@ -57,7 +53,6 @@ out_log: |
   R0:      101    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] output: 'h' << 'e'
 
   [DEB] CR: OUT    R0     0            
@@ -65,12 +60,10 @@ out_log: |
   R0:      101    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] CR: JMP    -      0      (while)
   TICK:     18    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
   R0:      101    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
-
 
   [DEB] input: 'l'
 
@@ -79,7 +72,6 @@ out_log: |
   R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] output: 'he' << 'l'
 
   [DEB] CR: OUT    R0     0            
@@ -87,34 +79,20 @@ out_log: |
   R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] CR: JMP    -      0      (while)
   TICK:     27    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
   R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] input: 'l'
 
-  [DEB] CR: IN     R0     1            
-  TICK:     30    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
-  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
-  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
 
-  [DEB] output: 'hel' << 'l'
+  ...
 
-  [DEB] CR: OUT    R0     0            
-  TICK:     33    IP:        2    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
-  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
-  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
-
-
-  [DEB] CR: JMP    -      0      (while)
   TICK:     36    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
   R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
-
 
   [DEB] input: 'o'
 
@@ -123,7 +101,6 @@ out_log: |
   R0:      111    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] output: 'hell' << 'o'
 
   [DEB] CR: OUT    R0     0            
@@ -131,12 +108,10 @@ out_log: |
   R0:      111    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] CR: JMP    -      0      (while)
   TICK:     45    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
   R0:      111    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
-
 
   [DEB] input: '!'
 
@@ -145,7 +120,6 @@ out_log: |
   R0:       33    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] output: 'hello' << '!'
 
   [DEB] CR: OUT    R0     0            
@@ -153,12 +127,10 @@ out_log: |
   R0:       33    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] CR: JMP    -      0      (while)
   TICK:     54    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
   R0:       33    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
-
 
   [DEB] input: '\n'
 
@@ -167,7 +139,6 @@ out_log: |
   R0:       10    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] output: 'hello!' << '\n'
 
   [DEB] CR: OUT    R0     0            
@@ -175,12 +146,10 @@ out_log: |
   R0:       10    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-
   [DEB] CR: JMP    -      0      (while)
   TICK:     63    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
   R0:       10    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
-
 
   [WAR] Input buffer is empty!
   [INF] output_buffer: 'hello!\n'
