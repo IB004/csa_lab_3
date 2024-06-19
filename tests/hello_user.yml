@@ -299,9 +299,265 @@ out_log: |
 
   [DEB] CR: SUB    R2     1            
   TICK:     77    IP:       20    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     41
+  R0:       38    R1:       97    R2:       16    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    AR     1            
+  TICK:     80    IP:       21    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     42
+  R0:       38    R1:       97    R2:       16    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      15     (print_while)
+  TICK:     83    IP:       15    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     42
+  R0:       38    R1:       97    R2:       16    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R2     0            
+  TICK:     86    IP:       16    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     42
+  R0:       38    R1:       97    R2:       16    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      22     (print_end)
+  TICK:     89    IP:       17    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     42
+  R0:       38    R1:       97    R2:       16    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: LD     R1     AR           
+  TICK:     92    IP:       18    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     42
+  R0:       38    R1:      116    R2:       16    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] output: 'Wha' << 't'
+
+  [DEB] CR: OUT    R1     0            
+  TICK:     95    IP:       19    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     42
+  R0:       38    R1:      116    R2:       16    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: SUB    R2     1            
+  TICK:     98    IP:       20    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     42
+  R0:       38    R1:      116    R2:       15    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    AR     1            
+  TICK:    101    IP:       21    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     43
+  R0:       38    R1:      116    R2:       15    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      15     (print_while)
+  TICK:    104    IP:       15    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     43
+  R0:       38    R1:      116    R2:       15    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R2     0            
+  TICK:    107    IP:       16    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     43
+  R0:       38    R1:      116    R2:       15    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      22     (print_end)
+  TICK:    110    IP:       17    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     43
+  R0:       38    R1:      116    R2:       15    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: LD     R1     AR           
+  TICK:    113    IP:       18    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     43
+  R0:       38    R1:       32    R2:       15    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] output: 'What' << ' '
+
+  [DEB] CR: OUT    R1     0            
+  TICK:    116    IP:       19    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     43
+  R0:       38    R1:       32    R2:       15    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: SUB    R2     1            
+  TICK:    119    IP:       20    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     43
+  R0:       38    R1:       32    R2:       14    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    AR     1            
+  TICK:    122    IP:       21    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     44
+  R0:       38    R1:       32    R2:       14    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      15     (print_while)
+  TICK:    125    IP:       15    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     44
+  R0:       38    R1:       32    R2:       14    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R2     0            
+  TICK:    128    IP:       16    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     44
+  R0:       38    R1:       32    R2:       14    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      22     (print_end)
+  TICK:    131    IP:       17    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     44
+  R0:       38    R1:       32    R2:       14    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: LD     R1     AR           
+  TICK:    134    IP:       18    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     44
+  R0:       38    R1:      105    R2:       14    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] output: 'What ' << 'i'
+
+  [DEB] CR: OUT    R1     0            
+  TICK:    137    IP:       19    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     44
+  R0:       38    R1:      105    R2:       14    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: SUB    R2     1            
+  TICK:    140    IP:       20    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     44
+  R0:       38    R1:      105    R2:       13    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    AR     1            
+  TICK:    143    IP:       21    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     45
+  R0:       38    R1:      105    R2:       13    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      15     (print_while)
+  TICK:    146    IP:       15    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     45
+  R0:       38    R1:      105    R2:       13    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R2     0            
+  TICK:    149    IP:       16    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     45
+  R0:       38    R1:      105    R2:       13    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
   ...
 
+  TICK:   1169    IP:       20    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     76
+  R0:       68    R1:      116    R2:        4    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    AR     1            
+  TICK:   1172    IP:       21    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     77
+  R0:       68    R1:      116    R2:        4    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      15     (print_while)
+  TICK:   1175    IP:       15    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     77
+  R0:       68    R1:      116    R2:        4    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R2     0            
+  TICK:   1178    IP:       16    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     77
+  R0:       68    R1:      116    R2:        4    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      22     (print_end)
+  TICK:   1181    IP:       17    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     77
+  R0:       68    R1:      116    R2:        4    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: LD     R1     AR           
+  TICK:   1184    IP:       18    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     77
+  R0:       68    R1:      111    R2:        4    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] output: 'What is your name? Hello, Ivan But' << 'o'
+
+  [DEB] CR: OUT    R1     0            
+  TICK:   1187    IP:       19    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     77
+  R0:       68    R1:      111    R2:        4    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: SUB    R2     1            
+  TICK:   1190    IP:       20    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     77
+  R0:       68    R1:      111    R2:        3    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    AR     1            
+  TICK:   1193    IP:       21    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     78
+  R0:       68    R1:      111    R2:        3    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      15     (print_while)
+  TICK:   1196    IP:       15    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     78
+  R0:       68    R1:      111    R2:        3    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R2     0            
+  TICK:   1199    IP:       16    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     78
+  R0:       68    R1:      111    R2:        3    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      22     (print_end)
+  TICK:   1202    IP:       17    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     78
+  R0:       68    R1:      111    R2:        3    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: LD     R1     AR           
+  TICK:   1205    IP:       18    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     78
+  R0:       68    R1:      118    R2:        3    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] output: 'What is your name? Hello, Ivan Buto' << 'v'
+
+  [DEB] CR: OUT    R1     0            
+  TICK:   1208    IP:       19    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     78
+  R0:       68    R1:      118    R2:        3    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: SUB    R2     1            
+  TICK:   1211    IP:       20    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     78
+  R0:       68    R1:      118    R2:        2    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    AR     1            
+  TICK:   1214    IP:       21    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     79
+  R0:       68    R1:      118    R2:        2    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      15     (print_while)
+  TICK:   1217    IP:       15    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     79
+  R0:       68    R1:      118    R2:        2    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R2     0            
+  TICK:   1220    IP:       16    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     79
+  R0:       68    R1:      118    R2:        2    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      22     (print_end)
+  TICK:   1223    IP:       17    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     79
+  R0:       68    R1:      118    R2:        2    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: LD     R1     AR           
+  TICK:   1226    IP:       18    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     79
+  R0:       68    R1:       92    R2:        2    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] output: 'What is your name? Hello, Ivan Butov' << '\\'
+
+  [DEB] CR: OUT    R1     0            
+  TICK:   1229    IP:       19    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     79
+  R0:       68    R1:       92    R2:        2    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: SUB    R2     1            
+  TICK:   1232    IP:       20    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     79
+  R0:       68    R1:       92    R2:        1    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    AR     1            
+  TICK:   1235    IP:       21    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     80
+  R0:       68    R1:       92    R2:        1    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      15     (print_while)
+  TICK:   1238    IP:       15    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     80
+  R0:       68    R1:       92    R2:        1    R3:       10    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R2     0            
+  TICK:   1241    IP:       16    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     80
+  R0:       68    R1:       92    R2:        1    R3:       10    R4:        0    R5:        0
   R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
   [DEB] CR: JZ     -      22     (print_end)

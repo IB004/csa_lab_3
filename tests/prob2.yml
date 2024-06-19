@@ -206,9 +206,265 @@ out_log: |
   [DEB] CR: MV     R2     R3           
   TICK:     75    IP:        9    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
   R0:        0    R1:        5    R2:        8    R3:        8    R4:        2    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: REM    R3     2            
+  TICK:     78    IP:       10    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:        0    R1:        5    R2:        8    R3:        0    R4:        2    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JNZ    -      3      (while)
+  TICK:     81    IP:       11    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:        0    R1:        5    R2:        8    R3:        0    R4:        2    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    R4     R2           
+  TICK:     84    IP:       12    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        5    R2:        8    R3:        0    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      3      (while)
+  TICK:     87    IP:        3    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        5    R2:        8    R3:        0    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: MV     R3     R1           
+  TICK:     90    IP:        4    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        5    R2:        8    R3:        5    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    R3     R2           
+  TICK:     93    IP:        5    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        5    R2:        8    R3:       13    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R3     4000000       
+  TICK:     96    IP:        6    SP:      127    BP:        0    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:        5    R2:        8    R3:       13    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JG     -      13     (end) 
+  TICK:     99    IP:        7    SP:      127    BP:        0    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:        5    R2:        8    R3:       13    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: MV     R1     R2           
+  TICK:    102    IP:        8    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        8    R2:        8    R3:       13    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: MV     R2     R3           
+  TICK:    105    IP:        9    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        8    R2:       13    R3:       13    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: REM    R3     2            
+  TICK:    108    IP:       10    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        8    R2:       13    R3:        1    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JNZ    -      3      (while)
+  TICK:    111    IP:        3    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        8    R2:       13    R3:        1    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: MV     R3     R1           
+  TICK:    114    IP:        4    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        8    R2:       13    R3:        8    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    R3     R2           
+  TICK:    117    IP:        5    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:        8    R2:       13    R3:       21    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R3     4000000       
+  TICK:    120    IP:        6    SP:      127    BP:        0    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:        8    R2:       13    R3:       21    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JG     -      13     (end) 
+  TICK:    123    IP:        7    SP:      127    BP:        0    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:        8    R2:       13    R3:       21    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: MV     R1     R2           
+  TICK:    126    IP:        8    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:       13    R2:       13    R3:       21    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: MV     R2     R3           
+  TICK:    129    IP:        9    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:       13    R2:       21    R3:       21    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: REM    R3     2            
+  TICK:    132    IP:       10    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:       13    R2:       21    R3:        1    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JNZ    -      3      (while)
+  TICK:    135    IP:        3    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:       13    R2:       21    R3:        1    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: MV     R3     R1           
+  TICK:    138    IP:        4    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:       13    R2:       21    R3:       13    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: ADD    R3     R2           
+  TICK:    141    IP:        5    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:       13    R2:       21    R3:       34    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R3     4000000       
+  TICK:    144    IP:        6    SP:      127    BP:        0    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:       13    R2:       21    R3:       34    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: JG     -      13     (end) 
+  TICK:    147    IP:        7    SP:      127    BP:        0    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:       13    R2:       21    R3:       34    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: MV     R1     R2           
+  TICK:    150    IP:        8    SP:      127    BP:        0    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:       21    R2:       21    R3:       34    R4:       10    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+  [DEB] CR: MV     R2     R3           
 
   ...
 
+  [DEB] CR: CMP    R0     0            
+  TICK:    956    IP:       22    SP:      119    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        4    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       54    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      24     (out_number)
+  TICK:    959    IP:       23    SP:      119    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        4    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       54    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      16     (print_number)
+  TICK:    962    IP:       16    SP:      119    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        4    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       54    R9:        0    R10:       0
+
+  [DEB] CR: MV     R8     R0           
+  TICK:    965    IP:       17    SP:      119    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        4    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:        4    R9:        0    R10:       0
+
+  [DEB] CR: REM    R8     10           
+  TICK:    968    IP:       18    SP:      119    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        4    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:        4    R9:        0    R10:       0
+
+  [DEB] CR: ADD    R8     48           
+  TICK:    971    IP:       19    SP:      119    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        4    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: PUSH   -      R8           
+  TICK:    975    IP:       20    SP:      118    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        4    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: DIV    R0     10           
+  TICK:    978    IP:       21    SP:      118    BP:      125    Z S O: 1 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: CMP    R0     0            
+  TICK:    981    IP:       22    SP:      118    BP:      125    Z S O: 1 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      24     (out_number)
+  TICK:    984    IP:       24    SP:      118    BP:      125    Z S O: 1 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: CMP    SP     BP           
+  TICK:    987    IP:       25    SP:      118    BP:      125    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      29     (return)
+  TICK:    990    IP:       26    SP:      118    BP:      125    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: POP    -      R8           
+  TICK:    994    IP:       27    SP:      119    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] output: '' << '4'
+
+  [DEB] CR: OUT    R8     0            
+  TICK:    997    IP:       28    SP:      119    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      24     (out_number)
+  TICK:   1000    IP:       24    SP:      119    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: CMP    SP     BP           
+  TICK:   1003    IP:       25    SP:      119    BP:      125    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      29     (return)
+  TICK:   1006    IP:       26    SP:      119    BP:      125    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       52    R9:        0    R10:       0
+
+  [DEB] CR: POP    -      R8           
+  TICK:   1010    IP:       27    SP:      120    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       54    R9:        0    R10:       0
+
+  [DEB] output: '4' << '6'
+
+  [DEB] CR: OUT    R8     0            
+  TICK:   1013    IP:       28    SP:      120    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       54    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      24     (out_number)
+  TICK:   1016    IP:       24    SP:      120    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       54    R9:        0    R10:       0
+
+  [DEB] CR: CMP    SP     BP           
+  TICK:   1019    IP:       25    SP:      120    BP:      125    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       54    R9:        0    R10:       0
+
+  [DEB] CR: JZ     -      29     (return)
+  TICK:   1022    IP:       26    SP:      120    BP:      125    Z S O: 0 1 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       54    R9:        0    R10:       0
+
+  [DEB] CR: POP    -      R8           
+  TICK:   1026    IP:       27    SP:      121    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       49    R9:        0    R10:       0
+
+  [DEB] output: '46' << '1'
+
+  [DEB] CR: OUT    R8     0            
+  TICK:   1029    IP:       28    SP:      121    BP:      125    Z S O: 0 0 0    ADDR:      0
+  R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
+  R6:        0    R7:        0    R8:       49    R9:        0    R10:       0
+
+  [DEB] CR: JMP    -      24     (out_number)
+  TICK:   1032    IP:       24    SP:      121    BP:      125    Z S O: 0 0 0    ADDR:      0
   R0:        0    R1:  2178309    R2:  3524578    R3:  5702887    R4:  4613732    R5:        0
   R6:        0    R7:        0    R8:       49    R9:        0    R10:       0
 

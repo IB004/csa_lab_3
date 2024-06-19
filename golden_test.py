@@ -30,14 +30,14 @@ def test_translator_asm_and_machine(golden, caplog):
         with open(target, encoding="utf-8") as file:
             code = file.read()
         logs = caplog.text.split("\n")
-        if len(logs) <= 256:
+        if len(logs) <= 512:
             log = caplog.text
         else:
             log = "\n".join(
                 [
-                    *logs[0:128],
+                    *logs[0:256],
                     "\n...\n",
-                    *logs[-128:],
+                    *logs[-256:],
                 ]
             )
         assert code == golden.out["out_code"]
