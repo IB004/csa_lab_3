@@ -36,7 +36,7 @@ def test_translator_asm_and_machine(golden, caplog):
             log = "\n".join(
                 [
                     *logs[0:64],
-                    "\n\n...\n",
+                    "\n...\n",
                     *logs[-64:],
                 ]
             )

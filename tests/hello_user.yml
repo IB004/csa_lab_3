@@ -236,7 +236,6 @@ out_log: |
   [DEB] CR: JMP    -      15     (print_while)
   TICK:     41    IP:       15    SP:      125    BP:      125    Z S O: 0 0 0    ADDR:     40
 
-
   ...
 
   [DEB] CR: LD     R2     AR           
