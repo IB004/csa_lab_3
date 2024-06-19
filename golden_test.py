@@ -2,11 +2,11 @@ import contextlib
 import io
 import logging
 import os
+import parser
 import tempfile
-import pytest
 
 import machine
-import parser
+import pytest
 
 
 @pytest.mark.golden_test("tests/*.yml")
