@@ -5,7 +5,7 @@ from enum import IntEnum, auto
 from isa import Command, Opcodes, Registers, read_code
 
 max_int_32 = 2**31 - 1
-min_int_32 = -2**31
+min_int_32 = -(2**31)
 
 
 class AluOps(IntEnum):
@@ -132,63 +132,47 @@ class ControlUnit:
 
             case Opcodes.CALL:
                 # push instruction pointer
-                self.data_path.latch_reg_alu_data(
-                    Registers.SP, AluOps.DEC, Registers.SP, Registers.SP
-                )
+                self.data_path.latch_reg_alu_data(Registers.SP, AluOps.DEC, Registers.SP, Registers.SP)
                 self.tick()
                 self.data_path.mem_wr(sel_data=Registers.IP, sel_addr=Registers.SP)
                 self.tick()
 
                 # push base pointer
-                self.data_path.latch_reg_alu_data(
-                    Registers.SP, AluOps.DEC, Registers.SP, Registers.SP
-                )
+                self.data_path.latch_reg_alu_data(Registers.SP, AluOps.DEC, Registers.SP, Registers.SP)
                 self.tick()
                 self.data_path.mem_wr(sel_data=Registers.BP, sel_addr=Registers.SP)
                 self.tick()
 
                 # base pointer <- stack pointer
-                self.data_path.latch_reg_alu_data(
-                    Registers.BP, AluOps.LFT, Registers.SP, Registers.SP
-                )
+                self.data_path.latch_reg_alu_data(Registers.BP, AluOps.LFT, Registers.SP, Registers.SP)
                 self.tick()
 
                 # jmp function
-                self.data_path.latch_reg_alu_data(
-                    Registers.IP, AluOps.LFT, command.r2, command.r2, latch_flags=False
-                )
+                self.data_path.latch_reg_alu_data(Registers.IP, AluOps.LFT, command.r2, command.r2, latch_flags=False)
                 self.tick()
 
                 return True
 
             case Opcodes.RET:
                 # stack pointer <- base pointer
-                self.data_path.latch_reg_alu_data(
-                    Registers.SP, AluOps.LFT, Registers.BP, Registers.BP
-                )
+                self.data_path.latch_reg_alu_data(Registers.SP, AluOps.LFT, Registers.BP, Registers.BP)
                 self.tick()
 
                 # pop base pointer
                 self.data_path.latch_reg_mem_data(reg=Registers.BP, sel_addr=Registers.SP)
                 self.tick()
-                self.data_path.latch_reg_alu_data(
-                    Registers.SP, AluOps.INC, Registers.SP, Registers.SP
-                )
+                self.data_path.latch_reg_alu_data(Registers.SP, AluOps.INC, Registers.SP, Registers.SP)
                 self.tick()
 
                 # pop instruction pointer
                 self.data_path.latch_reg_mem_data(reg=Registers.IP, sel_addr=Registers.SP)
                 self.tick()
-                self.data_path.latch_reg_alu_data(
-                    Registers.SP, AluOps.INC, Registers.SP, Registers.SP
-                )
+                self.data_path.latch_reg_alu_data(Registers.SP, AluOps.INC, Registers.SP, Registers.SP)
                 self.tick()
                 return True
 
             case Opcodes.JMP:
-                self.data_path.latch_reg_alu_data(
-                    Registers.IP, AluOps.LFT, command.r2, command.r2, latch_flags=False
-                )
+                self.data_path.latch_reg_alu_data(Registers.IP, AluOps.LFT, command.r2, command.r2, latch_flags=False)
                 self.tick()
                 return True
 
@@ -256,9 +240,7 @@ class ControlUnit:
                 self.tick()
 
             case Opcodes.PUSH:
-                self.data_path.latch_reg_alu_data(
-                    Registers.SP, AluOps.DEC, Registers.SP, Registers.SP
-                )
+                self.data_path.latch_reg_alu_data(Registers.SP, AluOps.DEC, Registers.SP, Registers.SP)
                 self.tick()
                 self.data_path.mem_wr(sel_data=command.r2, sel_addr=Registers.SP)
                 self.tick()
@@ -266,9 +248,7 @@ class ControlUnit:
             case Opcodes.POP:
                 self.data_path.latch_reg_mem_data(reg=command.r2, sel_addr=Registers.SP)
                 self.tick()
-                self.data_path.latch_reg_alu_data(
-                    Registers.SP, AluOps.INC, Registers.SP, Registers.SP
-                )
+                self.data_path.latch_reg_alu_data(Registers.SP, AluOps.INC, Registers.SP, Registers.SP)
                 self.tick()
 
             case Opcodes.IN:

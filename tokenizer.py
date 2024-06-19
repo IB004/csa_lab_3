@@ -94,7 +94,6 @@ TokenTypes = {
     TokenNames.MUL: TokenType("MUL", "mul\\b", Opcodes.MUL, 2),
     TokenNames.DIV: TokenType("DIV", "div\\b", Opcodes.DIV, 2),
     TokenNames.REM: TokenType("REM", "rem\\b", Opcodes.REM, 2),
-
     TokenNames.R0: TokenType("R0", "r0\\b", Registers.R0),
     TokenNames.R1: TokenType("R1", "r1\\b", Registers.R1),
     TokenNames.R2: TokenType("R2", "r2\\b", Registers.R2),
@@ -109,7 +108,6 @@ TokenTypes = {
     TokenNames.AR: TokenType("AR", "ar\\b", Registers.AR),
     TokenNames.BP: TokenType("BP", "bp\\b", Registers.BP),
     TokenNames.SP: TokenType("SP", "sp\\b", Registers.SP),
-
     TokenNames.NUMBER: TokenType("NUMBER", "[-+]?\\d+"),
     TokenNames.STRING: TokenType("STRING", '".*"'),
     TokenNames.ALLOC: TokenType("ALLOC", "\\[\\d+\\]"),
