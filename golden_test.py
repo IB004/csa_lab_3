@@ -24,7 +24,7 @@ def test_translator_asm_and_machine(golden, caplog):
             file.write(golden["in_stdin"])
         with contextlib.redirect_stdout(io.StringIO()) as stdout:
             parser.main(source, target)
-            print("=" * 64)
+            print("=" * 60)
             machine.main(target, input_file)
 
         with open(target, encoding="utf-8") as file:
