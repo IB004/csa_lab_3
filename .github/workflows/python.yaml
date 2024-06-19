@@ -5,16 +5,16 @@ on:
     branches:
       - main
     paths:
-      - "./*.py"
-      - "**/*.yml"
+      - "*.py"
+      - "tests/*.yml"
       - ".github/workflows/python.yaml"
 
   pull_request:
     branches:
       - main
     paths:
-      - "**/*.py"
-      - "**/*.yml"
+      - "*.py"
+      - "tests/*.yml"
       - ".github/workflows/python.yaml"
 
 defaults:
