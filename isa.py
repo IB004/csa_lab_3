@@ -76,9 +76,10 @@ class Command:
         label = "" if self.label is None else "(" + self.label + ")"
         data = "" if self.r2 != Registers.CR and (self.r1 is not None or self.r2 is not None) else str(self.data)
 
+        n_just = 6
         if self.r2 == Registers.CR:
-            return f"{opcode_name.ljust(10)} {r1_name.ljust(10)} {data.ljust(10)} {label.ljust(10)}"
-        return f"{opcode_name.ljust(10)} {r1_name.ljust(10)} {r2_name.ljust(10)} {data.ljust(10)}"
+            return f"{opcode_name.ljust(n_just)} {r1_name.ljust(n_just)} {data.ljust(n_just)} {label.ljust(n_just)}"
+        return f"{opcode_name.ljust(n_just)} {r1_name.ljust(n_just)} {r2_name.ljust(n_just)} {data.ljust(n_just)}"
 
 
 def write_code(filename, code):

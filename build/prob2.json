@@ -27,6 +27,4 @@
  {"opcode": 12, "r1": null, "r2": 8, "data": 0, "label": null},
  {"opcode": 15, "r1": 8, "r2": 15, "data": 0, "label": null},
  {"opcode": 5, "r1": null, "r2": 15, "data": 24, "label": "out_number"},
- {"opcode": 16, "r1": 8, "r2": 15, "data": 10, "label": null},
- {"opcode": 15, "r1": 8, "r2": 15, "data": 0, "label": null},
  {"opcode": 3, "r1": null, "r2": null, "data": 0, "label": null}]

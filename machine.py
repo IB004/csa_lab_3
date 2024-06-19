@@ -84,6 +84,7 @@ class DataPath:
         symbol = self.input_buffer.pop(0)
         symbol_code = ord(symbol)
         self.r[reg.value] = symbol_code
+        logging.debug("input: %s\n", repr(symbol))
 
     # wr
     def mem_wr(self, sel_data, sel_addr):
@@ -92,6 +93,7 @@ class DataPath:
     # out_addr
     def output(self, sel_data):
         symbol = chr(self.r[sel_data.value])
+        logging.debug("output: %s << %s\n", repr("".join(self.output_buffer)), repr(symbol))
         self.output_buffer.append(symbol)
 
 
@@ -208,8 +210,6 @@ class ControlUnit:
                 self.tick()
                 return True
 
-        # todo different jumps
-
         return False
 
     def decode_and_execute_instruction(self):
@@ -284,54 +284,49 @@ class ControlUnit:
                 self.tick()
 
     def __repr__(self):
-        state_repr = f"\nCR: {self.cur_command.__repr__()}\n"
-        state_repr += "TICK: {:3}\nIP: {:3}  SP: {:3}  BP: {:3}\n".format(
+        state_repr = "CR: {}\n".format(self.cur_command)
+        state_repr += "TICK: {:6}    IP: {:8}    SP: {:8}    BP: {:8}    Z S O: {:1} {:1} {:1}    ADDR: {:6}\n".format(
             self._tick,
             self.data_path.r[Registers.IP.value],
             self.data_path.r[Registers.SP.value],
             self.data_path.r[Registers.BP.value],
-        )
-        state_repr += "R0: {:3}  R3: {:3}  R6: {:3}  R9: {:3}\n".format(
-            self.data_path.r[Registers.R0.value],
-            self.data_path.r[Registers.R3.value],
-            self.data_path.r[Registers.R6.value],
-            self.data_path.r[Registers.R9.value],
-        )
-
-        state_repr += "R1: {:3}  R4: {:3}  R7: {:3}  R10: {:3}\n".format(
-            self.data_path.r[Registers.R1.value],
-            self.data_path.r[Registers.R4.value],
-            self.data_path.r[Registers.R7.value],
-            self.data_path.r[Registers.R10.value],
-        )
-
-        state_repr += "R2: {:3}  R5: {:3}  R8: {:3}  ADDR: {:3}\n".format(
-            self.data_path.r[Registers.R2.value],
-            self.data_path.r[Registers.R5.value],
-            self.data_path.r[Registers.R8.value],
-            self.data_path.r[Registers.AR.value],
-        )
-
-        state_repr += "ZF: {:3}  SF: {:3}  OF: {:3}\n".format(
             self.data_path.zero,
             self.data_path.sign,
             self.data_path.overflow,
+            self.data_path.r[Registers.AR.value],
         )
 
-        return "{}".format(state_repr)
+        state_repr += "R0: {:8}    R1: {:8}    R2: {:8}    R3: {:8}    R4: {:8}    R5: {:8}\n".format(
+            self.data_path.r[Registers.R0.value],
+            self.data_path.r[Registers.R1.value],
+            self.data_path.r[Registers.R2.value],
+            self.data_path.r[Registers.R3.value],
+            self.data_path.r[Registers.R4.value],
+            self.data_path.r[Registers.R5.value],
+        )
+
+        state_repr += "R6: {:8}    R7: {:8}    R8: {:8}    R9: {:8}    R10: {:7}\n\n".format(
+            self.data_path.r[Registers.R6.value],
+            self.data_path.r[Registers.R7.value],
+            self.data_path.r[Registers.R8.value],
+            self.data_path.r[Registers.R9.value],
+            self.data_path.r[Registers.R10.value],
+        )
+
+        return state_repr
 
 
 def simulation(code, input_tokens, memory_size, limit):
     data_path = DataPath(code, memory_size, input_tokens)
     control_unit = ControlUnit(data_path)
-
-    logging.debug(control_unit.__repr__())
     instr_counter = 0
+
+    logging.debug("%s", control_unit)
     try:
         while instr_counter < limit:
             control_unit.decode_and_execute_instruction()
             instr_counter += 1
-            logging.debug(control_unit.__repr__())
+            logging.debug("%s", control_unit)
     except EOFError:
         logging.warning("Input buffer is empty!")
     except StopIteration:
@@ -339,8 +334,8 @@ def simulation(code, input_tokens, memory_size, limit):
 
     if instr_counter >= limit:
         logging.warning("Limit exceeded!")
-    logging.info(f"output_buffer: {data_path.output_buffer}")
-    return data_path.output_buffer, instr_counter, control_unit._tick
+    logging.info("output_buffer: %s", repr("".join(data_path.output_buffer)))
+    return data_path.output_buffer, instr_counter, control_unit.current_tick()
 
 
 def main(code_file, input_file):

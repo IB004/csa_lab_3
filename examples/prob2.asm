@@ -34,6 +34,4 @@ print_number:
         out r8 0
         jmp out_number
     return:
-        mv r8 10        # new line char
-        out r8 0
         ret

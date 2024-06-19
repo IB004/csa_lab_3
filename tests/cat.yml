@@ -22,203 +22,165 @@ out_stdout: |
   instr_counter:  21 ticks: 65
 
 out_log: |
-  [DEB] 
-  CR: None
-  TICK:   0
-  IP:   0  SP: 127  BP:   0
-  R0:   0  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] CR: None
+  TICK:      0    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:        0    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-  [DEB] 
-  CR: IN         R0         1                    
-  TICK:   3
-  IP:   1  SP: 127  BP:   0
-  R0: 104  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
 
-  [DEB] 
-  CR: OUT        R0         0                    
-  TICK:   6
-  IP:   2  SP: 127  BP:   0
-  R0: 104  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] input: 'h'
 
-  [DEB] 
-  CR: JMP        -          0          (while)   
-  TICK:   9
-  IP:   0  SP: 127  BP:   0
-  R0: 104  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] CR: IN     R0     1            
+  TICK:      3    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      104    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-  [DEB] 
-  CR: IN         R0         1                    
-  TICK:  12
-  IP:   1  SP: 127  BP:   0
-  R0: 101  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
 
-  [DEB] 
-  CR: OUT        R0         0                    
-  TICK:  15
-  IP:   2  SP: 127  BP:   0
-  R0: 101  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] output: '' << 'h'
 
-  [DEB] 
-  CR: JMP        -          0          (while)   
-  TICK:  18
-  IP:   0  SP: 127  BP:   0
-  R0: 101  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] CR: OUT    R0     0            
+  TICK:      6    IP:        2    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      104    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-  [DEB] 
-  CR: IN         R0         1                    
-  TICK:  21
-  IP:   1  SP: 127  BP:   0
-  R0: 108  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
 
-  [DEB] 
-  CR: OUT        R0         0                    
-  TICK:  24
-  IP:   2  SP: 127  BP:   0
-  R0: 108  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] CR: JMP    -      0      (while)
+  TICK:      9    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      104    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-  [DEB] 
-  CR: JMP        -          0          (while)   
-  TICK:  27
-  IP:   0  SP: 127  BP:   0
-  R0: 108  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
 
-  [DEB] 
-  CR: IN         R0         1                    
-  TICK:  30
-  IP:   1  SP: 127  BP:   0
-  R0: 108  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] input: 'e'
 
-  [DEB] 
-  CR: OUT        R0         0                    
-  TICK:  33
-  IP:   2  SP: 127  BP:   0
-  R0: 108  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] CR: IN     R0     1            
+  TICK:     12    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      101    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-  [DEB] 
-  CR: JMP        -          0          (while)   
-  TICK:  36
-  IP:   0  SP: 127  BP:   0
-  R0: 108  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
 
-  [DEB] 
-  CR: IN         R0         1                    
-  TICK:  39
-  IP:   1  SP: 127  BP:   0
-  R0: 111  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] output: 'h' << 'e'
 
-  [DEB] 
-  CR: OUT        R0         0                    
-  TICK:  42
-  IP:   2  SP: 127  BP:   0
-  R0: 111  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] CR: OUT    R0     0            
+  TICK:     15    IP:        2    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      101    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-  [DEB] 
-  CR: JMP        -          0          (while)   
-  TICK:  45
-  IP:   0  SP: 127  BP:   0
-  R0: 111  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
 
-  [DEB] 
-  CR: IN         R0         1                    
-  TICK:  48
-  IP:   1  SP: 127  BP:   0
-  R0:  33  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] CR: JMP    -      0      (while)
+  TICK:     18    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      101    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-  [DEB] 
-  CR: OUT        R0         0                    
-  TICK:  51
-  IP:   2  SP: 127  BP:   0
-  R0:  33  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
 
-  [DEB] 
-  CR: JMP        -          0          (while)   
-  TICK:  54
-  IP:   0  SP: 127  BP:   0
-  R0:  33  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] input: 'l'
 
-  [DEB] 
-  CR: IN         R0         1                    
-  TICK:  57
-  IP:   1  SP: 127  BP:   0
-  R0:  10  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] CR: IN     R0     1            
+  TICK:     21    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
 
-  [DEB] 
-  CR: OUT        R0         0                    
-  TICK:  60
-  IP:   2  SP: 127  BP:   0
-  R0:  10  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
 
-  [DEB] 
-  CR: JMP        -          0          (while)   
-  TICK:  63
-  IP:   0  SP: 127  BP:   0
-  R0:  10  R3:   0  R6:   0  R9:   0
-  R1:   0  R4:   0  R7:   0  R10:   0
-  R2:   0  R5:   0  R8:   0  ADDR:   0
-  ZF:   1  SF:   0  OF:   0
+  [DEB] output: 'he' << 'l'
+
+  [DEB] CR: OUT    R0     0            
+  TICK:     24    IP:        2    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] CR: JMP    -      0      (while)
+  TICK:     27    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] input: 'l'
+
+  [DEB] CR: IN     R0     1            
+  TICK:     30    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] output: 'hel' << 'l'
+
+  [DEB] CR: OUT    R0     0            
+  TICK:     33    IP:        2    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] CR: JMP    -      0      (while)
+  TICK:     36    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      108    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] input: 'o'
+
+  [DEB] CR: IN     R0     1            
+  TICK:     39    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      111    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] output: 'hell' << 'o'
+
+  [DEB] CR: OUT    R0     0            
+  TICK:     42    IP:        2    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      111    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] CR: JMP    -      0      (while)
+  TICK:     45    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:      111    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] input: '!'
+
+  [DEB] CR: IN     R0     1            
+  TICK:     48    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:       33    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] output: 'hello' << '!'
+
+  [DEB] CR: OUT    R0     0            
+  TICK:     51    IP:        2    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:       33    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] CR: JMP    -      0      (while)
+  TICK:     54    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:       33    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] input: '\n'
+
+  [DEB] CR: IN     R0     1            
+  TICK:     57    IP:        1    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:       10    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] output: 'hello!' << '\n'
+
+  [DEB] CR: OUT    R0     0            
+  TICK:     60    IP:        2    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:       10    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
+
+  [DEB] CR: JMP    -      0      (while)
+  TICK:     63    IP:        0    SP:      127    BP:        0    Z S O: 1 0 0    ADDR:      0
+  R0:       10    R1:        0    R2:        0    R3:        0    R4:        0    R5:        0
+  R6:        0    R7:        0    R8:        0    R9:        0    R10:       0
+
 
   [WAR] Input buffer is empty!
-  [INF] output_buffer: ['h', 'e', 'l', 'l', 'o', '!', '\n']
+  [INF] output_buffer: 'hello!\n'
