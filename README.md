@@ -209,39 +209,7 @@ data ::=
 
 ### ControlUnit
 
-``` text
-   +------------------(+1)-------+
-   |                             |
-   |    latch_program_counter    |
-   |                  |          |
-   |   +-----+        v          |
-   +-->|     |     +---------+   |    +---------+
-       | MUX |---->| program |---+--->| program |
-   +-->|     |     | counter |        | memory  |
-   |   +-----+     +---------+        +---------+
-   |      ^                               |
-   |      | sel_next                      | current instruction
-   |      |                               |
-   +---------------(select-arg)-----------+
-          |                               |      +---------+
-          |                               |      |  step   |
-          |                               |  +---| counter |
-          |                               |  |   +---------+
-          |                               v  v        ^
-          |                       +-------------+     |
-          +-----------------------| instruction |-----+
-                                  |   decoder   |
-                                  |             |<-------+
-                                  +-------------+        |
-                                          |              |
-                                          | signals      |
-                                          v              |
-                                    +----------+  zero   |
-                                    |          |---------+
-                                    | DataPath |
-                     input -------->|          |----------> output
-                                    +----------+
-```
+![control unit scheme](./imgs/control_unit.png)
 
 Реализован в классе `ControlUnit`.
 
