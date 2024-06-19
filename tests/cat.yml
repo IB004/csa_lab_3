@@ -1,0 +1,224 @@
+in_source: |-
+  while:
+    in r0 1
+    out r0 0
+    jmp while
+  hlt
+
+in_stdin: |
+  hello!
+
+out_code: |-
+  [{"opcode": 14, "r1": 0, "r2": 15, "data": 1, "label": null},
+   {"opcode": 15, "r1": 0, "r2": 15, "data": 0, "label": null},
+   {"opcode": 5, "r1": null, "r2": 15, "data": 0, "label": "while"},
+   {"opcode": 1, "r1": null, "r2": null, "data": 0, "label": null}]
+
+out_stdout: |
+  source LoC: 5 code instr: 4
+  ============================================================
+  hello!
+
+  instr_counter:  21 ticks: 65
+
+out_log: |
+  [DEB] 
+  CR: None
+  TICK:   0
+  IP:   0  SP: 127  BP:   0
+  R0:   0  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: IN         R0         1                    
+  TICK:   3
+  IP:   1  SP: 127  BP:   0
+  R0: 104  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R0         0                    
+  TICK:   6
+  IP:   2  SP: 127  BP:   0
+  R0: 104  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          0          (while)   
+  TICK:   9
+  IP:   0  SP: 127  BP:   0
+  R0: 104  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: IN         R0         1                    
+  TICK:  12
+  IP:   1  SP: 127  BP:   0
+  R0: 101  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R0         0                    
+  TICK:  15
+  IP:   2  SP: 127  BP:   0
+  R0: 101  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          0          (while)   
+  TICK:  18
+  IP:   0  SP: 127  BP:   0
+  R0: 101  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: IN         R0         1                    
+  TICK:  21
+  IP:   1  SP: 127  BP:   0
+  R0: 108  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R0         0                    
+  TICK:  24
+  IP:   2  SP: 127  BP:   0
+  R0: 108  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          0          (while)   
+  TICK:  27
+  IP:   0  SP: 127  BP:   0
+  R0: 108  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: IN         R0         1                    
+  TICK:  30
+  IP:   1  SP: 127  BP:   0
+  R0: 108  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R0         0                    
+  TICK:  33
+  IP:   2  SP: 127  BP:   0
+  R0: 108  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          0          (while)   
+  TICK:  36
+  IP:   0  SP: 127  BP:   0
+  R0: 108  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: IN         R0         1                    
+  TICK:  39
+  IP:   1  SP: 127  BP:   0
+  R0: 111  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R0         0                    
+  TICK:  42
+  IP:   2  SP: 127  BP:   0
+  R0: 111  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          0          (while)   
+  TICK:  45
+  IP:   0  SP: 127  BP:   0
+  R0: 111  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: IN         R0         1                    
+  TICK:  48
+  IP:   1  SP: 127  BP:   0
+  R0:  33  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R0         0                    
+  TICK:  51
+  IP:   2  SP: 127  BP:   0
+  R0:  33  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          0          (while)   
+  TICK:  54
+  IP:   0  SP: 127  BP:   0
+  R0:  33  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: IN         R0         1                    
+  TICK:  57
+  IP:   1  SP: 127  BP:   0
+  R0:  10  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R0         0                    
+  TICK:  60
+  IP:   2  SP: 127  BP:   0
+  R0:  10  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          0          (while)   
+  TICK:  63
+  IP:   0  SP: 127  BP:   0
+  R0:  10  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [WAR] Input buffer is empty!
+  [INF] output_buffer: ['h', 'e', 'l', 'l', 'o', '!', '\n']
