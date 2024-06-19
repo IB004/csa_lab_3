@@ -1,0 +1,4026 @@
+in_source: |-
+  mv r0 question
+  call print
+
+  mv r0 name
+  mv r1 32
+  call input_name
+
+  mv r0 greeting
+  call print
+
+  mv r0 name
+  call print
+
+  mv r0 ending
+  call print
+
+  hlt
+
+  # r0 - str pointer
+  print:
+      mv ar r0
+      ld r2 ar
+      add ar 1
+      print_while:
+          cmp r2 0
+          jz print_end
+          ld r1 ar
+          out r1 0
+          sub r2 1
+          add ar 1
+          jmp print_while
+      print_end:
+          ret
+
+  # r0 - buffer pointer
+  # r1 - buffer size
+  input_name:
+      mv ar r0
+      add ar 1
+      sub r1 1
+      mv r2 0                 # r2 - counter
+      input_name_while:
+          cmp r2 r1
+          jz input_name_end
+          in r3 1
+          cmp r3 10           # '\\n'
+          jz input_name_end
+          st r3 ar
+          add r2 1
+          add ar 1
+          jmp input_name_while
+      input_name_end:
+          st r2 r0
+          ret
+
+  question: "What is your name? "
+  greeting: "Hello, "
+  ending: "!"
+  name: [32]
+
+in_stdin: |
+  Ivan Butov\n
+
+out_code: |-
+  [{"opcode": 16, "r1": 0, "r2": 15, "data": 38, "label": "question"},
+   {"opcode": 2, "r1": null, "r2": 15, "data": 12, "label": "print"},
+   {"opcode": 16, "r1": 0, "r2": 15, "data": 68, "label": "name"},
+   {"opcode": 16, "r1": 1, "r2": 15, "data": 32, "label": null},
+   {"opcode": 2, "r1": null, "r2": 15, "data": 23, "label": "input_name"},
+   {"opcode": 16, "r1": 0, "r2": 15, "data": 58, "label": "greeting"},
+   {"opcode": 2, "r1": null, "r2": 15, "data": 12, "label": "print"},
+   {"opcode": 16, "r1": 0, "r2": 15, "data": 68, "label": "name"},
+   {"opcode": 2, "r1": null, "r2": 15, "data": 12, "label": "print"},
+   {"opcode": 16, "r1": 0, "r2": 15, "data": 66, "label": "ending"},
+   {"opcode": 2, "r1": null, "r2": 15, "data": 12, "label": "print"},
+   {"opcode": 1, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": 16, "r1": 11, "r2": 0, "data": 0, "label": null},
+   {"opcode": 11, "r1": 2, "r2": 11, "data": 0, "label": null},
+   {"opcode": 17, "r1": 11, "r2": 15, "data": 1, "label": null},
+   {"opcode": 4, "r1": 2, "r2": 15, "data": 0, "label": null},
+   {"opcode": 6, "r1": null, "r2": 15, "data": 22, "label": "print_end"},
+   {"opcode": 11, "r1": 1, "r2": 11, "data": 0, "label": null},
+   {"opcode": 15, "r1": 1, "r2": 15, "data": 0, "label": null},
+   {"opcode": 18, "r1": 2, "r2": 15, "data": 1, "label": null},
+   {"opcode": 17, "r1": 11, "r2": 15, "data": 1, "label": null},
+   {"opcode": 5, "r1": null, "r2": 15, "data": 15, "label": "print_while"},
+   {"opcode": 3, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": 16, "r1": 11, "r2": 0, "data": 0, "label": null},
+   {"opcode": 17, "r1": 11, "r2": 15, "data": 1, "label": null},
+   {"opcode": 18, "r1": 1, "r2": 15, "data": 1, "label": null},
+   {"opcode": 16, "r1": 2, "r2": 15, "data": 0, "label": null},
+   {"opcode": 4, "r1": 2, "r2": 1, "data": 0, "label": null},
+   {"opcode": 6, "r1": null, "r2": 15, "data": 36, "label": "input_name_end"},
+   {"opcode": 14, "r1": 3, "r2": 15, "data": 1, "label": null},
+   {"opcode": 4, "r1": 3, "r2": 15, "data": 10, "label": null},
+   {"opcode": 6, "r1": null, "r2": 15, "data": 36, "label": "input_name_end"},
+   {"opcode": 10, "r1": 3, "r2": 11, "data": 0, "label": null},
+   {"opcode": 17, "r1": 2, "r2": 15, "data": 1, "label": null},
+   {"opcode": 17, "r1": 11, "r2": 15, "data": 1, "label": null},
+   {"opcode": 5, "r1": null, "r2": 15, "data": 27, "label": "input_name_while"},
+   {"opcode": 10, "r1": 2, "r2": 0, "data": 0, "label": null},
+   {"opcode": 3, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 19, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 87, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 104, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 97, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 116, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 32, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 105, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 115, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 32, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 121, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 111, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 117, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 114, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 32, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 110, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 97, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 109, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 101, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 63, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 32, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 7, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 72, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 101, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 108, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 108, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 111, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 44, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 32, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 1, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 33, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null},
+   {"opcode": null, "r1": null, "r2": null, "data": 0, "label": null}]
+
+out_stdout: |
+  source LoC: 59 code instr: 100
+  ============================================================
+  What is your name? Hello, Ivan Butov\n!
+  instr_counter:  427 ticks: 1328
+
+out_log: |
+  [DEB] 
+  CR: None
+  TICK:   0
+  IP:   0  SP: 127  BP:   0
+  R0:   0  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         R0         38         (question)
+  TICK:   3
+  IP:   1  SP: 127  BP:   0
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CALL       -          12         (print)   
+  TICK:  11
+  IP:  12  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:   0
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         AR         R0                   
+  TICK:  14
+  IP:  13  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  38
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R2         AR                   
+  TICK:  17
+  IP:  14  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:  19  R5:   0  R8:   0  ADDR:  38
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK:  20
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:  19  R5:   0  R8:   0  ADDR:  39
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK:  23
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:  19  R5:   0  R8:   0  ADDR:  39
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK:  26
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:   0  R4:   0  R7:   0  R10:   0
+  R2:  19  R5:   0  R8:   0  ADDR:  39
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK:  29
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  87  R4:   0  R7:   0  R10:   0
+  R2:  19  R5:   0  R8:   0  ADDR:  39
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK:  32
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  87  R4:   0  R7:   0  R10:   0
+  R2:  19  R5:   0  R8:   0  ADDR:  39
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK:  35
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  87  R4:   0  R7:   0  R10:   0
+  R2:  18  R5:   0  R8:   0  ADDR:  39
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK:  38
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  87  R4:   0  R7:   0  R10:   0
+  R2:  18  R5:   0  R8:   0  ADDR:  40
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK:  41
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  87  R4:   0  R7:   0  R10:   0
+  R2:  18  R5:   0  R8:   0  ADDR:  40
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK:  44
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  87  R4:   0  R7:   0  R10:   0
+  R2:  18  R5:   0  R8:   0  ADDR:  40
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK:  47
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  87  R4:   0  R7:   0  R10:   0
+  R2:  18  R5:   0  R8:   0  ADDR:  40
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK:  50
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 104  R4:   0  R7:   0  R10:   0
+  R2:  18  R5:   0  R8:   0  ADDR:  40
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK:  53
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 104  R4:   0  R7:   0  R10:   0
+  R2:  18  R5:   0  R8:   0  ADDR:  40
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK:  56
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 104  R4:   0  R7:   0  R10:   0
+  R2:  17  R5:   0  R8:   0  ADDR:  40
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK:  59
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 104  R4:   0  R7:   0  R10:   0
+  R2:  17  R5:   0  R8:   0  ADDR:  41
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK:  62
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 104  R4:   0  R7:   0  R10:   0
+  R2:  17  R5:   0  R8:   0  ADDR:  41
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK:  65
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 104  R4:   0  R7:   0  R10:   0
+  R2:  17  R5:   0  R8:   0  ADDR:  41
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK:  68
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 104  R4:   0  R7:   0  R10:   0
+  R2:  17  R5:   0  R8:   0  ADDR:  41
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK:  71
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:  17  R5:   0  R8:   0  ADDR:  41
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK:  74
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:  17  R5:   0  R8:   0  ADDR:  41
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK:  77
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:  16  R5:   0  R8:   0  ADDR:  41
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK:  80
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:  16  R5:   0  R8:   0  ADDR:  42
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK:  83
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:  16  R5:   0  R8:   0  ADDR:  42
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK:  86
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:  16  R5:   0  R8:   0  ADDR:  42
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK:  89
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:  16  R5:   0  R8:   0  ADDR:  42
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK:  92
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:  16  R5:   0  R8:   0  ADDR:  42
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK:  95
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:  16  R5:   0  R8:   0  ADDR:  42
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK:  98
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:  15  R5:   0  R8:   0  ADDR:  42
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 101
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:  15  R5:   0  R8:   0  ADDR:  43
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 104
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:  15  R5:   0  R8:   0  ADDR:  43
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 107
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:  15  R5:   0  R8:   0  ADDR:  43
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 110
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:  15  R5:   0  R8:   0  ADDR:  43
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 113
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  15  R5:   0  R8:   0  ADDR:  43
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 116
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  15  R5:   0  R8:   0  ADDR:  43
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 119
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  14  R5:   0  R8:   0  ADDR:  43
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 122
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  14  R5:   0  R8:   0  ADDR:  44
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 125
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  14  R5:   0  R8:   0  ADDR:  44
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 128
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  14  R5:   0  R8:   0  ADDR:  44
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 131
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  14  R5:   0  R8:   0  ADDR:  44
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 134
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 105  R4:   0  R7:   0  R10:   0
+  R2:  14  R5:   0  R8:   0  ADDR:  44
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 137
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 105  R4:   0  R7:   0  R10:   0
+  R2:  14  R5:   0  R8:   0  ADDR:  44
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 140
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 105  R4:   0  R7:   0  R10:   0
+  R2:  13  R5:   0  R8:   0  ADDR:  44
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 143
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 105  R4:   0  R7:   0  R10:   0
+  R2:  13  R5:   0  R8:   0  ADDR:  45
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 146
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 105  R4:   0  R7:   0  R10:   0
+  R2:  13  R5:   0  R8:   0  ADDR:  45
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 149
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 105  R4:   0  R7:   0  R10:   0
+  R2:  13  R5:   0  R8:   0  ADDR:  45
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 152
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 105  R4:   0  R7:   0  R10:   0
+  R2:  13  R5:   0  R8:   0  ADDR:  45
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 155
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 115  R4:   0  R7:   0  R10:   0
+  R2:  13  R5:   0  R8:   0  ADDR:  45
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 158
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 115  R4:   0  R7:   0  R10:   0
+  R2:  13  R5:   0  R8:   0  ADDR:  45
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 161
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 115  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  45
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 164
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 115  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  46
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 167
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 115  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  46
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 170
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 115  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  46
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 173
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 115  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  46
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 176
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  46
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 179
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  46
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 182
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  46
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 185
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  47
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 188
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  47
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 191
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  47
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 194
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  47
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 197
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 121  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  47
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 200
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 121  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  47
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 203
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 121  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  47
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 206
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 121  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  48
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 209
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 121  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  48
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 212
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 121  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  48
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 215
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 121  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  48
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 218
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  48
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 221
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  48
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 224
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  48
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 227
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  49
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 230
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  49
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 233
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  49
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 236
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  49
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 239
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  49
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 242
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  49
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 245
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  49
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 248
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  50
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 251
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  50
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 254
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  50
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 257
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  50
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 260
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 114  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  50
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 263
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 114  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  50
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 266
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 114  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  50
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 269
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 114  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  51
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 272
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 114  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  51
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 275
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 114  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  51
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 278
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 114  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  51
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 281
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  51
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 284
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  51
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 287
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  51
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 290
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  52
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 293
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  52
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 296
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  52
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 299
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  52
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 302
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  52
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 305
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  52
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 308
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  52
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 311
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  53
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 314
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  53
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 317
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  53
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 320
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  53
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 323
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  53
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 326
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  53
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 329
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  53
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 332
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  54
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 335
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  54
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 338
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  54
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 341
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  54
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 344
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 109  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  54
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 347
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 109  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  54
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 350
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 109  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  54
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 353
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 109  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  55
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 356
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 109  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  55
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 359
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 109  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  55
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 362
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 109  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  55
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 365
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  55
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 368
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  55
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 371
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  55
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 374
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  56
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 377
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  56
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 380
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  56
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 383
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  56
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 386
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  63  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  56
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 389
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  63  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  56
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 392
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  63  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  56
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 395
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  63  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  57
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 398
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  63  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  57
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 401
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  63  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  57
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 404
+  IP:  17  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  63  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  57
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 407
+  IP:  18  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  57
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 410
+  IP:  19  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  57
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 413
+  IP:  20  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  57
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 416
+  IP:  21  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  58
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 419
+  IP:  15  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  58
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 422
+  IP:  16  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  58
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 425
+  IP:  22  SP: 125  BP: 125
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  58
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: RET        -          -          0         
+  TICK: 432
+  IP:   2  SP: 127  BP:   0
+  R0:  38  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  58
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         R0         68         (name)    
+  TICK: 435
+  IP:   3  SP: 127  BP:   0
+  R0:  68  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  58
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         R1         32                   
+  TICK: 438
+  IP:   4  SP: 127  BP:   0
+  R0:  68  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  58
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CALL       -          23         (input_name)
+  TICK: 446
+  IP:  23  SP: 125  BP: 125
+  R0:  68  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  58
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         AR         R0                   
+  TICK: 449
+  IP:  24  SP: 125  BP: 125
+  R0:  68  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  68
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 452
+  IP:  25  SP: 125  BP: 125
+  R0:  68  R3:   0  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R1         1                    
+  TICK: 455
+  IP:  26  SP: 125  BP: 125
+  R0:  68  R3:   0  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         R2         0                    
+  TICK: 458
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3:   0  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  69
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 461
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3:   0  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 464
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3:   0  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 467
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3:  73  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 470
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3:  73  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 473
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3:  73  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 476
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3:  73  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 479
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3:  73  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 482
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3:  73  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 485
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3:  73  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 488
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3:  73  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 491
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3:  73  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 494
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 497
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 500
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 503
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 506
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 509
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 512
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 515
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 518
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 521
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3:  97  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 524
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3:  97  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 527
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3:  97  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 530
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3:  97  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 533
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3:  97  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 536
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3:  97  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 539
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3:  97  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 542
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3:  97  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 545
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3:  97  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 548
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 551
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 554
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 557
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 560
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 563
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 566
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 569
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 572
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 575
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3:  32  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 578
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3:  32  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 581
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3:  32  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 584
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3:  32  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 587
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3:  32  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 590
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3:  32  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 593
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3:  32  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 596
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3:  32  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 599
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3:  32  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 602
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3:  66  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 605
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3:  66  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 608
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3:  66  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 611
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3:  66  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 614
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3:  66  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 617
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3:  66  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 620
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3:  66  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 623
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3:  66  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 626
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3:  66  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 629
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3: 117  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 632
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3: 117  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 635
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3: 117  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 638
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3: 117  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 641
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3: 117  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 644
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3: 117  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 647
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3: 117  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 650
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3: 117  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 653
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3: 117  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 656
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3: 116  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 659
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3: 116  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 662
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3: 116  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 665
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3: 116  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 668
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3: 116  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 671
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3: 116  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 674
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3: 116  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 677
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3: 116  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 680
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3: 116  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 683
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3: 111  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 686
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3: 111  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 689
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3: 111  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 692
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3: 111  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 695
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3: 111  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 698
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3: 111  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 701
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3: 111  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 704
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3: 111  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 707
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3: 111  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 710
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 713
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 716
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 719
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 722
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 725
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 728
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 731
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 734
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3: 118  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 737
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3:  92  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 740
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3:  92  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 743
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3:  92  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 746
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3:  92  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 749
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3:  92  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 752
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3:  92  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 755
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3:  92  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 758
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3:  92  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 761
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3:  92  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 764
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 767
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 770
+  IP:  32  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R3         AR                   
+  TICK: 773
+  IP:  33  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        R2         1                    
+  TICK: 776
+  IP:  34  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 779
+  IP:  35  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          27         (input_name_while)
+  TICK: 782
+  IP:  27  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         R1                   
+  TICK: 785
+  IP:  28  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 788
+  IP:  29  SP: 125  BP: 125
+  R0:  68  R3: 110  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: IN         R3         1                    
+  TICK: 791
+  IP:  30  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   1  OF:   0
+
+  [DEB] 
+  CR: CMP        R3         10                   
+  TICK: 794
+  IP:  31  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          36         (input_name_end)
+  TICK: 797
+  IP:  36  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ST         R2         R0                   
+  TICK: 800
+  IP:  37  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: RET        -          -          0         
+  TICK: 807
+  IP:   5  SP: 127  BP:   0
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         R0         58         (greeting)
+  TICK: 810
+  IP:   6  SP: 127  BP:   0
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CALL       -          12         (print)   
+  TICK: 818
+  IP:  12  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         AR         R0                   
+  TICK: 821
+  IP:  13  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  58
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R2         AR                   
+  TICK: 824
+  IP:  14  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  58
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 827
+  IP:  15  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  59
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 830
+  IP:  16  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  59
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 833
+  IP:  17  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  31  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  59
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 836
+  IP:  18  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  72  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  59
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 839
+  IP:  19  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  72  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  59
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 842
+  IP:  20  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  72  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  59
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 845
+  IP:  21  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  72  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  60
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 848
+  IP:  15  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  72  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  60
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 851
+  IP:  16  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  72  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  60
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 854
+  IP:  17  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  72  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  60
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 857
+  IP:  18  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  60
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 860
+  IP:  19  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  60
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 863
+  IP:  20  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  60
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 866
+  IP:  21  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  61
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 869
+  IP:  15  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  61
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 872
+  IP:  16  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  61
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 875
+  IP:  17  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 101  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  61
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 878
+  IP:  18  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  61
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 881
+  IP:  19  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  61
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 884
+  IP:  20  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  61
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 887
+  IP:  21  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  62
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 890
+  IP:  15  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  62
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 893
+  IP:  16  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  62
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 896
+  IP:  17  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  62
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 899
+  IP:  18  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  62
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 902
+  IP:  19  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  62
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 905
+  IP:  20  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  62
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 908
+  IP:  21  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  63
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 911
+  IP:  15  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  63
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 914
+  IP:  16  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  63
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 917
+  IP:  17  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 108  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  63
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 920
+  IP:  18  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  63
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 923
+  IP:  19  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  63
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 926
+  IP:  20  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  63
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 929
+  IP:  21  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  64
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 932
+  IP:  15  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  64
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 935
+  IP:  16  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  64
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 938
+  IP:  17  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  64
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 941
+  IP:  18  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  44  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  64
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 944
+  IP:  19  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  44  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  64
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 947
+  IP:  20  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  44  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  64
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 950
+  IP:  21  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  44  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  65
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 953
+  IP:  15  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  44  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  65
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 956
+  IP:  16  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  44  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  65
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 959
+  IP:  17  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  44  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  65
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 962
+  IP:  18  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  65
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 965
+  IP:  19  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  65
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 968
+  IP:  20  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  65
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 971
+  IP:  21  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  66
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 974
+  IP:  15  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  66
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 977
+  IP:  16  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  66
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 980
+  IP:  22  SP: 125  BP: 125
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  66
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: RET        -          -          0         
+  TICK: 987
+  IP:   7  SP: 127  BP:   0
+  R0:  58  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  66
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         R0         68         (name)    
+  TICK: 990
+  IP:   8  SP: 127  BP:   0
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  66
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CALL       -          12         (print)   
+  TICK: 998
+  IP:  12  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  66
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         AR         R0                   
+  TICK: 1001
+  IP:  13  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  68
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R2         AR                   
+  TICK: 1004
+  IP:  14  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  68
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1007
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1010
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1013
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1016
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  73  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1019
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  73  R4:   0  R7:   0  R10:   0
+  R2:  12  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1022
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  73  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  69
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1025
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  73  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1028
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  73  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1031
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  73  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1034
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  73  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1037
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1040
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:  11  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1043
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  70
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1046
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1049
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1052
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1055
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1058
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1061
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:  10  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1064
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  71
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1067
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1070
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1073
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1076
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  97  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1079
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1082
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   9  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1085
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  72
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1088
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1091
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1094
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1097
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1100
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1103
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   8  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1106
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  73
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1109
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1112
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1115
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1118
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  32  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1121
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  66  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1124
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  66  R4:   0  R7:   0  R10:   0
+  R2:   7  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1127
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  66  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  74
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1130
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  66  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1133
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  66  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1136
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  66  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1139
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  66  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1142
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1145
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   6  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1148
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  75
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1151
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1154
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1157
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1160
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 117  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1163
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1166
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:   5  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1169
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  76
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1172
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1175
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1178
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1181
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 116  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1184
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1187
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   4  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1190
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  77
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1193
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1196
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1199
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1202
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 111  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1205
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1208
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:   3  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1211
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  78
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1214
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1217
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1220
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1223
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 118  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1226
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  92  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1229
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  92  R4:   0  R7:   0  R10:   0
+  R2:   2  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1232
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  92  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  79
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1235
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  92  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1238
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  92  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1241
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  92  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1244
+  IP:  17  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1:  92  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1247
+  IP:  18  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1250
+  IP:  19  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  80
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1253
+  IP:  20  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  80
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1256
+  IP:  21  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1259
+  IP:  15  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1262
+  IP:  16  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  81
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1265
+  IP:  22  SP: 125  BP: 125
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  81
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: RET        -          -          0         
+  TICK: 1272
+  IP:   9  SP: 127  BP:   0
+  R0:  68  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         R0         66         (ending)  
+  TICK: 1275
+  IP:  10  SP: 127  BP:   0
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CALL       -          12         (print)   
+  TICK: 1283
+  IP:  12  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  81
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: MV         AR         R0                   
+  TICK: 1286
+  IP:  13  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  66
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R2         AR                   
+  TICK: 1289
+  IP:  14  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  66
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1292
+  IP:  15  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  67
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1295
+  IP:  16  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  67
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1298
+  IP:  17  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1: 110  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  67
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: LD         R1         AR                   
+  TICK: 1301
+  IP:  18  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1:  33  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  67
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: OUT        R1         0                    
+  TICK: 1304
+  IP:  19  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1:  33  R4:   0  R7:   0  R10:   0
+  R2:   1  R5:   0  R8:   0  ADDR:  67
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: SUB        R2         1                    
+  TICK: 1307
+  IP:  20  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1:  33  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  67
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: ADD        AR         1                    
+  TICK: 1310
+  IP:  21  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1:  33  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  68
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JMP        -          15         (print_while)
+  TICK: 1313
+  IP:  15  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1:  33  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  68
+  ZF:   0  SF:   0  OF:   0
+
+  [DEB] 
+  CR: CMP        R2         0                    
+  TICK: 1316
+  IP:  16  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1:  33  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  68
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: JZ         -          22         (print_end)
+  TICK: 1319
+  IP:  22  SP: 125  BP: 125
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1:  33  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  68
+  ZF:   1  SF:   0  OF:   0
+
+  [DEB] 
+  CR: RET        -          -          0         
+  TICK: 1326
+  IP:  11  SP: 127  BP:   0
+  R0:  66  R3:  10  R6:   0  R9:   0
+  R1:  33  R4:   0  R7:   0  R10:   0
+  R2:   0  R5:   0  R8:   0  ADDR:  68
+  ZF:   0  SF:   0  OF:   0
+
+  [INF] output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', ' ', 'H', 'e', 'l', 'l', 'o', ',', ' ', 'I', 'v', 'a', 'n', ' ', 'B', 'u', 't', 'o', 'v', '\\', 'n', '!']
