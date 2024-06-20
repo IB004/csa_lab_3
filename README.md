@@ -86,12 +86,12 @@ comment ::= "#" [<any symbols except '\n'>]
 ## Организация памяти
 
 Доступно 16 регистров по 32 бита:
- - `r0` - `r10` - регистры общего назначения
- - `ar` - регистр адреса для реализации относительной адресации, может использоваться как регистр общего назначения
- - `bp` - base pointer, используется при работе с функциями, `calle-saved` регистр
- - `sp` - stack pointer, указатель на вершину стека, используется при работе с функциями, `calle-saved` регистр
- - `ip` - указатель на следующую инструкцию, напрямую недоступен из ассемблера
- - `cr` - регистр команды, подается в `Control Unit`, младшие 22 бита используются как `implicit` операнд, напрямую недоступен из ассемблера
+ - `r0` - `r10` - регистры общего назначения;
+ - `ar` - регистр адреса для реализации относительной адресации, может использоваться как регистр общего назначения;
+ - `bp` - base pointer, используется при работе с функциями, `calle-saved` регистр;
+ - `sp` - stack pointer, указатель на вершину стека, используется при работе с функциями, `calle-saved` регистр;
+ - `ip` - указатель на следующую инструкцию, напрямую недоступен из ассемблера;
+ - `cr` - регистр команды, подается в `Control Unit`, младшие 22 бита используются как `implicit` операнд, напрямую недоступен из ассемблера.
 
 Память одна для инструкций и для данных, линейное адресное пространство, состоит из ячеек по 32 бита.
 В модели память реализуется списком объектов `Command`, которые могут хранить данные или инструкции.
@@ -104,11 +104,11 @@ comment ::= "#" [<any symbols except '\n'>]
 Особенности процессора:
 
 - Машинное слово -- 32 бита
-- Доступ к памяти данных осуществляется по адресу, хранящемуся в специальном регистре `data_address`. Установка адреса осуществляется путём инкрементирования или декрементирования инструкциями `<` и `>`.
-- Обработка данных осуществляется по текущему адресу операциями `+` и `-`, а также через ввод/вывод.
 - Поток управления:
-    - инкремент `PC` после каждой инструкции;
-    - условный (`jz`) и безусловный (`jmp`) переходы (использование см. в разделе транслятор).
+    - чтение инструкции по адресу `IP` в `CR` -- 1 такт;
+    - инкремент `IP` -- всегда содержит адрес следующей инструкции -- 1 такт;
+    - декодирование команды и выставление сигналов от `Control Unit`
+	    - количество тактов указано в таблице
 
 ### Набор инструкций
 
@@ -123,55 +123,58 @@ comment ::= "#" [<any symbols except '\n'>]
 |`jnz` | -            |addr          |1      | `ip <- addr`, если `zero` == 0 |
 |`jl`  | -            |addr          |1      | `ip <- addr`, если `zero` == 0 и `sign` == `overflow` |
 |`jg`  | -            |addr          |1      | `ip <- addr`, если `sign` != `overflow` |
-|`st`  | reg data     |dest addr     |8      | Останов |
-|`ld`  | dest reg     |sourse addr   |1      | Останов |
-|`pop` | -            |dest reg only |8      | Останов |
-|`push`| -            |data          |8      | Останов |
-|`in`  | dest reg     |in addr       |8      | Останов |
-|`out` | reg data     |out addr      |8      | Останов |
-|`mv`  | op1 (dest)   |op2           |8      | Останов |
-|`add` | op1 (dest)   |op2           |1      | Останов |
-|`sub` | op1 (dest)   |op2           |8      | Останов |
-|`mul` | op1 (dest)   |op2           |8      | Останов |
-|`div` | op1 (dest)   |op2           |8      | Останов |
-|`rem` | op1 (dest)   |op2           |8      | Останов |
+|`st`  | reg data     |dest addr     |1      | `mem[op2] <- op1` |
+|`ld`  | dest reg     |sourse addr   |1      | `op1 <- mem[op2]` |
+|`pop` | -            |dest(reg only)|2      | `op2 <- mem[sp], sp <- sp + 1` |
+|`push`| -            |data          |2      | `sp <- sp - 1, mem[sp] <- op2` |
+|`in`  | dest reg     |in addr       |1      | `op1 <- input` |
+|`out` | reg data     |out addr      |1      | `output <- op1` |
+|`mv`  | op1 (dest)   |op2           |1      | `op1 <- op2` |
+|`add` | op1 (dest)   |op2           |1      | `op1 <- op1 + op2` |
+|`sub` | op1 (dest)   |op2           |1      | `op1 <- op1 - op2`|
+|`mul` | op1 (dest)   |op2           |1      | `op1 <- op1 * op2`|
+|`div` | op1 (dest)   |op2           |1      | `op1 <- op1 // op2` |
+|`rem` | op1 (dest)   |op2           |1      | `op1 <- op1 % op2` |
 
 
-- `<addr>` -- исключительно непосредственная адресация памяти команд.
 
 ### Кодирование инструкций
 
 - Машинный код сериализуется в список JSON.
-- Один элемент списка -- одна инструкция.
-- Индекс списка -- адрес инструкции. Используется для команд перехода.
+- Один элемент списка -- одна ячейка памяти, содержащая инструкцию или данные.
+- Индекс списка -- адрес в памяти. Используется для команд перехода.
 
 Пример:
-
 ```json
 [
     {
-        "opcode": "jz",
-        "arg": 5,
-        "term": [
-            1,
-            5,
-            "]"
-        ]
-    }
+	    "opcode": 16, 
+	    "r1": 0, 
+	    "r2": 15, 
+	    "data": 14, 
+	    "label": "name"
+	  }
 ]
 ```
 
 где:
+- `opcode` -- опкод инструкции из перечисления `Opcodes`;
+- `r1`, `r2` -- номера регистров из перечисления `Registers`;
+- `data` -- поле для хранения данных при задании ячейки памяти или место для `implicit` операнда;
+- `label` -- имя метки, проставленное при трансляции. Сохраняется для удобства отслеживания кода в модели.
 
-- `opcode` -- строка с кодом операции;
-- `arg` -- аргумент (может отсутствовать);
-- `term` -- информация о связанном месте в исходном коде (если есть).
 
-Типы данных в модуле [isa](./isa.py), где:
+Представление инструкции в бинарном виде:
+`ocode|i|_r1_|_r2_|xxxxxxxxxxxxxxxxxx|` -- команда, где `i` == 0, второй операнд тоже является регистром;
+`ocode|i|_r1_|_________data_________|` -- где `i` == 1, имеется `implicit` операнд.
 
-- `Opcode` -- перечисление кодов операций;
-- `Term` -- структура для описания значимого фрагмента кода исходной программы.
 
+Всего 32 бита:
+- `ocode` -- код операции, 5 бит
+- `i` -- флаг `implicit`, 1 бит
+- `_r1_` -- первый регистр, 4 бита
+	- `_r2_` -- второй регистр, 4 бита, оставшиеся 18 бит не используются
+	- `data` -- место для `implicit` операнда, 22 бита
 
 
 ## Транслятор
@@ -215,20 +218,19 @@ comment ::= "#" [<any symbols except '\n'>]
 
 ![control unit scheme](./imgs/control_unit.png)
 
-
 Реализован в классе `ControlUnit`.
 
-- Hardwired (реализовано полностью на Python).
-- Метод `decode_and_execute_instruction` моделирует выполнение полного цикла инструкции (1-2 такта процессора).
+- Hardwired (реализовано полностью на Python);
+- Метод `decode_and_execute_instruction` моделирует выполнение полного цикла инструкции;
 - `step_counter` необходим для многотактовых инструкций;
     - в реализации класс `ControlUnit` отсутствует, т.к. неявно задан потоком управления.
 
-Сигнал:
-
-- `latch_program_counter` -- сигнал для обновления счётчика команд в ControlUnit.
+Поток управления:
+- чтение инструкции по адресу `IP` в `CR` -- 1 такт;
+- инкремент `IP` -- всегда содержит адрес следующей инструкции -- 1 такт;
+- декодирование команды и выставление сигналов от `Control Unit`.
 
 Особенности работы модели:
-
 - Цикл симуляции осуществляется в функции `simulation`.
 - Шаг моделирования соответствует одной инструкции с выводом состояния в журнал.
 - Для журнала состояний процессора используется стандартный модуль `logging`.
@@ -242,12 +244,11 @@ comment ::= "#" [<any symbols except '\n'>]
 
 Тестирование выполняется при помощи golden test-ов.
 
-1. Тесты для языка `bf` реализованы в: [golden_bf_test.py](./golden_bf_test.py). Конфигурации:
-    - [golden/cat_bf.yml](golden/cat_bf.yml)
-    - [golden/hello_bf.yml](golden/hello_bf.yml)
-1. Тесты для языка `asm` реализованы в: [golden_asm_test.py](./golden_asm_test.py). Конфигурации:
-    - [golden/cat_asm.yml](golden/cat_asm.yml)
-1. Традиционные интеграционные тесты: [integration_test.py](./integration_test.py) (Depricated).
+Тесты реализованы в: [golden_test](./golden_test.py). Конфигурации:
+- [tests/cat.yml](tests/cat.yml)
+- [tests/hello.ymll](tests/hello.yml)
+- [tests/hello_user.ymll](tests/hello_user.yml)
+- [tests/prob2.ymll](tests/prob2.yml)
 
 Запустить тесты: `poetry run pytest . -v`
 
@@ -256,58 +257,77 @@ comment ::= "#" [<any symbols except '\n'>]
 CI при помощи Github Action:
 
 ``` yaml
-defaults:
-  run:
-    working-directory: ./python
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry
-          poetry install
-
-      - name: Run tests and collect coverage
-        run: |
-          poetry run coverage run -m pytest .
-          poetry run coverage report -m
-        env:
-          CI: true
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry
-          poetry install
-
-      - name: Check code formatting with Ruff
-        run: poetry run ruff format --check .
-
-      - name: Run Ruff linters
+name: Python CI  
+  
+on:  
+  push:  
+    branches:  
+      - main  
+    paths:  
+      - "*.py"  
+  - "tests/*.yml"  
+  - ".github/workflows/python.yaml"  
+  
+  pull_request:  
+    branches:  
+      - main  
+    paths:  
+      - "*.py"  
+  - "tests/*.yml"  
+  - ".github/workflows/python.yaml"  
+  
+defaults:  
+  run:  
+    working-directory: ./  
+  
+jobs:  
+  test:  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+      - name: Checkout code  
+        uses: actions/checkout@v4  
+  
+      - name: Set up Python  
+        uses: actions/setup-python@v4  
+        with:  
+          python-version: 3.11  
+  
+      - name: Install dependencies  
+        run: |  
+          python -m pip install --upgrade pip  
+          pip install poetry  
+          poetry install  
+  
+      - name: Run tests and collect coverage  
+        run: |  
+          poetry run coverage run -m pytest .  
+          poetry run coverage report -m  
+        env:  
+          CI: true  
+  
+  lint:  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+      - name: Checkout code  
+        uses: actions/checkout@v4  
+  
+      - name: Set up Python  
+        uses: actions/setup-python@v4  
+        with:  
+          python-version: 3.11  
+  
+      - name: Install dependencies  
+        run: |  
+          python -m pip install --upgrade pip  
+          pip install poetry  
+          poetry install  
+  
+      - name: Check code formatting with Ruff  
+        run: poetry run ruff format --check .  
+  
+      - name: Run Ruff linters  
         run: poetry run ruff check .
 ```
 
@@ -318,79 +338,4 @@ jobs:
 - `pytest` -- утилита для запуска тестов.
 - `ruff` -- утилита для форматирования и проверки стиля кодирования.
 
-Пример использования и журнал работы процессора на примере `cat`:
 
-``` shell
-$ cd src/brainfuck
-$ cat examples/foo_input.txt
-foo
-$ cat examples/cat.bf
-,[.,]
-$ ./translator.py examples/cat.bf target.out
-source LoC: 1 code instr: 6
-$ cat target.out
-[{"index": 0, "opcode": "input", "term": [1, 1, ","]},
- {"index": 4, "opcode": "jz", "arg": 5, "term": [1, 2, "["]},
- {"index": 2, "opcode": "print", "term": [1, 3, "."]},
- {"index": 3, "opcode": "input", "term": [1, 4, ","]},
- {"index": 4, "opcode": "jmp", "arg": 1, "term": [1, 5, "]"]},
- {"opcode": "halt"}]⏎
-$ ./machine.py target.out examples/foo_input.txt
-DEBUG:root:TICK:   0 PC:   0 ADDR:   0 MEM_OUT: 0 ACC: 0  input  (','@1:1)
-DEBUG:root:input: 'f'
-DEBUG:root:TICK:   2 PC:   1 ADDR:   0 MEM_OUT: 102 ACC: 0  jz 5  ('['@1:2)
-DEBUG:root:TICK:   4 PC:   2 ADDR:   0 MEM_OUT: 102 ACC: 102  print  ('.'@1:3)
-DEBUG:root:output: '' << 'f'
-DEBUG:root:TICK:   6 PC:   3 ADDR:   0 MEM_OUT: 102 ACC: 102  input  (','@1:4)
-DEBUG:root:input: 'o'
-DEBUG:root:TICK:   8 PC:   4 ADDR:   0 MEM_OUT: 111 ACC: 102  jmp 1  (']'@1:5)
-DEBUG:root:TICK:   9 PC:   1 ADDR:   0 MEM_OUT: 111 ACC: 102  jz 5  ('['@1:2)
-DEBUG:root:TICK:  11 PC:   2 ADDR:   0 MEM_OUT: 111 ACC: 111  print  ('.'@1:3)
-DEBUG:root:output: 'f' << 'o'
-DEBUG:root:TICK:  13 PC:   3 ADDR:   0 MEM_OUT: 111 ACC: 111  input  (','@1:4)
-DEBUG:root:input: 'o'
-DEBUG:root:TICK:  15 PC:   4 ADDR:   0 MEM_OUT: 111 ACC: 111  jmp 1  (']'@1:5)
-DEBUG:root:TICK:  16 PC:   1 ADDR:   0 MEM_OUT: 111 ACC: 111  jz 5  ('['@1:2)
-DEBUG:root:TICK:  18 PC:   2 ADDR:   0 MEM_OUT: 111 ACC: 111  print  ('.'@1:3)
-DEBUG:root:output: 'fo' << 'o'
-DEBUG:root:TICK:  20 PC:   3 ADDR:   0 MEM_OUT: 111 ACC: 111  input  (','@1:4)
-DEBUG:root:input: '\n'
-DEBUG:root:TICK:  22 PC:   4 ADDR:   0 MEM_OUT: 10 ACC: 111  jmp 1  (']'@1:5)
-DEBUG:root:TICK:  23 PC:   1 ADDR:   0 MEM_OUT: 10 ACC: 111  jz 5  ('['@1:2)
-DEBUG:root:TICK:  25 PC:   2 ADDR:   0 MEM_OUT: 10 ACC: 10  print  ('.'@1:3)
-DEBUG:root:output: 'foo' << '\n'
-DEBUG:root:TICK:  27 PC:   3 ADDR:   0 MEM_OUT: 10 ACC: 10  input  (','@1:4)
-WARNING:root:Input buffer is empty!
-INFO:root:output_buffer: 'foo\n'
-```
-
-Пример проверки исходного кода:
-
-``` shell
-$ poetry run pytest . -v
-=================================== test session starts ====================================
-platform darwin -- Python 3.12.0, pytest-7.4.3, pluggy-1.3.0 -- /Users/ryukzak/Library/Caches/pypoetry/virtualenvs/brainfuck-NIOcuFng-py3.12/bin/python
-cachedir: .pytest_cache
-rootdir: /Users/ryukzak/edu/csa/src/brainfuck
-configfile: pyproject.toml
-plugins: golden-0.2.2
-collected 6 items
-
-integration_test.py::test_translator_and_machine[golden/cat.yml] PASSED              [ 16%]
-integration_test.py::test_translator_and_machine[golden/hello.yml] PASSED            [ 33%]
-integration_test.py::TestTranslatorAndMachine::test_cat_example PASSED               [ 50%]
-integration_test.py::TestTranslatorAndMachine::test_cat_example_log PASSED           [ 66%]
-integration_test.py::TestTranslatorAndMachine::test_hello_example PASSED             [ 83%]
-machine.py::machine.DataPath.signal_wr PASSED                                        [100%]
-
-==================================== 6 passed in 0.14s =====================================
-$ poetry run ruff check .
-$ poetry run ruff format .
-4 files left unchanged
-```
-
-```text
-| ФИО                            | алг   | LoC | code байт | code инстр. | инстр. | такт. | вариант |
-| Пенской Александр Владимирович | hello | ... | -         | ...         | ...    | ...   | ...     |
-| Пенской Александр Владимирович | cat   | 1   | -         | 6           | 15     | 28    | ...     |
-```

@@ -216,7 +216,7 @@ class ControlUnit:
         self.tick()
 
         # decode instruction
-        command: Command = self.data_path.memory[self.data_path.r[Registers.IP.value]]
+        command = self.data_path.memory[self.data_path.r[Registers.IP.value]]
         self.cur_command = command
 
         # ip contains next instruction addr
@@ -237,16 +237,16 @@ class ControlUnit:
                 self.data_path.latch_reg_mem_data(reg=command.r1, sel_addr=command.r2)
                 self.tick()
 
-            case Opcodes.PUSH:
-                self.data_path.latch_reg_alu_data(Registers.SP, AluOps.DEC, Registers.SP, Registers.SP)
-                self.tick()
-                self.data_path.mem_wr(sel_data=command.r2, sel_addr=Registers.SP)
-                self.tick()
-
             case Opcodes.POP:
                 self.data_path.latch_reg_mem_data(reg=command.r2, sel_addr=Registers.SP)
                 self.tick()
                 self.data_path.latch_reg_alu_data(Registers.SP, AluOps.INC, Registers.SP, Registers.SP)
+                self.tick()
+
+            case Opcodes.PUSH:
+                self.data_path.latch_reg_alu_data(Registers.SP, AluOps.DEC, Registers.SP, Registers.SP)
+                self.tick()
+                self.data_path.mem_wr(sel_data=command.r2, sel_addr=Registers.SP)
                 self.tick()
 
             case Opcodes.IN:

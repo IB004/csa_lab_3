@@ -14,12 +14,14 @@ out_code: |-
    {"opcode": 5, "r1": null, "r2": 15, "data": 0, "label": "while"},
    {"opcode": 1, "r1": null, "r2": null, "data": 0, "label": null}]
 
+
 out_stdout: |
   source LoC: 5 code instr: 4
   ============================================================
   hello!
 
   instr_counter:  21 ticks: 65
+
 
 out_log: |
   [DEB] CR: None
