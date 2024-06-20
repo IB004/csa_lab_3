@@ -80,7 +80,7 @@ out_stdout: |
   source LoC: 40 code instr: 32
   ============================================================
   4613732
-  instr_counter:  363 ticks: 1114
+  instr_counter:  363 ticks: 1115
 
 out_log: |
   [DEB] CR: None

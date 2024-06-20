@@ -122,6 +122,7 @@ class ControlUnit:
                 return True
 
             case Opcodes.HLT:
+                self.tick()
                 raise StopIteration()
 
             case Opcodes.CMP:
@@ -191,16 +192,16 @@ class ControlUnit:
                 self.tick()
                 return True
 
-            case Opcodes.JG:
-                if self.data_path.zero == 0 and self.data_path.sign == self.data_path.overflow:
+            case Opcodes.JL:
+                if self.data_path.sign != self.data_path.overflow:
                     self.data_path.latch_reg_alu_data(
                         Registers.IP, AluOps.LFT, command.r2, command.r2, latch_flags=False
                     )
                 self.tick()
                 return True
 
-            case Opcodes.JL:
-                if self.data_path.sign != self.data_path.overflow:
+            case Opcodes.JG:
+                if self.data_path.zero == 0 and self.data_path.sign == self.data_path.overflow:
                     self.data_path.latch_reg_alu_data(
                         Registers.IP, AluOps.LFT, command.r2, command.r2, latch_flags=False
                     )

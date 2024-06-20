@@ -56,7 +56,7 @@ out_stdout: |
   source LoC: 21 code instr: 27
   ============================================================
   Hello world!
-  instr_counter:  92 ticks: 287
+  instr_counter:  92 ticks: 288
 
 out_log: |
   [DEB] CR: None

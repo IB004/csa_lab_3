@@ -169,7 +169,7 @@ out_stdout: |
   source LoC: 59 code instr: 100
   ============================================================
   What is your name? Hello, Ivan Butov!
-  instr_counter:  395 ticks: 1232
+  instr_counter:  395 ticks: 1233
 
 out_log: |
   [DEB] CR: None
