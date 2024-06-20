@@ -1,6 +1,6 @@
 import sys
 
-from isa import Command, Opcodes, Registers, write_code
+from isa import Command, Opcodes, Registers, max_int_22, max_int_32, min_int_22, min_int_32, write_code
 from tokenizer import TokenNames, TokenTypes, tokenize
 
 
@@ -26,7 +26,9 @@ def parse_second_reg(operand, command):
 
     if is_number(operand):
         command.r2 = Registers.CR
-        command.data = int(operand.text)
+        number = int(operand.text)
+        assert min_int_22 <= number <= max_int_22, f"Number {number} is too large for 22 bits."
+        command.data = number
 
     if is_label(operand):
         command.r2 = Registers.CR
@@ -68,13 +70,15 @@ class Parser:
             self.tokens.pop(0)  # :
             return
 
-        # number
+        # number mem alloc
         if self.on_top(TokenNames.NUMBER):
             token = self.tokens.pop(0)
-            self.code.append(Command(data=int(token.text)))
+            number = int(token.text)
+            assert min_int_32 <= number <= max_int_32, f"Number {number} is too large for 32 bits."
+            self.code.append(Command(data=number))
             return
 
-        # string
+        # string mem alloc
         if self.on_top(TokenNames.STRING):
             token = self.tokens.pop(0)
             length = len(token.text) - 2
@@ -83,7 +87,7 @@ class Parser:
                 self.code.append(Command(data=ord(token.text[i])))
             return
 
-        # alloc
+        # alloc array
         if self.on_top(TokenNames.ALLOC):
             token = self.tokens.pop(0)
             length = int(token.text[1:-1])

@@ -1,10 +1,11 @@
 mv r1 1
 mv r2 2
 mv r4 2         # sum reg
+ld r5 end_num
 while:
     mv r3 r1
     add r3 r2
-    cmp r3 4000000
+    cmp r3 r5
     jg end
     mv r1 r2
     mv r2 r3
@@ -16,6 +17,8 @@ end:
     mv r0 r4
     call print_number
     hlt
+
+end_num: 4000000
 
 # r0 - number
 print_number:

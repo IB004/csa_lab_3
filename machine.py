@@ -2,10 +2,7 @@ import logging
 import sys
 from enum import IntEnum, auto
 
-from isa import Command, Opcodes, Registers, read_code
-
-max_int_32 = 2**31 - 1
-min_int_32 = -(2**31)
+from isa import Command, Opcodes, Registers, max_int_32, min_int_32, read_code
 
 
 class AluOps(IntEnum):

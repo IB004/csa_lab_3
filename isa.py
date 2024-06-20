@@ -1,6 +1,12 @@
 import json
 from enum import IntEnum, auto
 
+max_int_32 = 2**31 - 1
+min_int_32 = -(2**31)
+
+max_int_22 = 2**21 - 1
+min_int_22 = -(2**21)
+
 
 class Opcodes(IntEnum):
     NOP = 0
